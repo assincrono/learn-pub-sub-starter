@@ -21,12 +21,14 @@ func main() {
 
 	fmt.Println("Connection went successfully!")
 
-
+	channel, err := connection.Channel();
 
 	if err != nil {
 		fmt.Println("Something went wrong on creating a channel.");
 		return;
 	}
+
+	pubsub.publishJSON()
 
 	signalChan := make(chan os.Signal, 1)
 	signal.Notify(signalChan, os.Interrupt)
