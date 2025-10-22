@@ -6,6 +6,9 @@ import (
 	"os/signal"
 
 	amqp "github.com/rabbitmq/amqp091-go"
+
+	"github.com/assincrono/learn-pub-sub-starter/internal/pubsub"
+	"github.com/assincrono/learn-pub-sub-starter/internal/routing"
 )
 
 func main() {
@@ -29,7 +32,7 @@ func main() {
 	}
 
 	
-	publishJSON(channel, ExchangePerilDirect, PauseKey, PlayingState{IsPaused: true})
+	pubsub.PublishJSON(channel, routing.ExchangePerilDirect, routing.PauseKey, routing.PlayingState{IsPaused: true})
 
 	signalChan := make(chan os.Signal, 1)
 	signal.Notify(signalChan, os.Interrupt)
