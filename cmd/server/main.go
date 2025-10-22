@@ -28,7 +28,8 @@ func main() {
 		return;
 	}
 
-	pubsub.publishJSON()
+	
+	publishJSON(channel, ExchangePerilDirect, PauseKey, PlayingState{IsPaused: true})
 
 	signalChan := make(chan os.Signal, 1)
 	signal.Notify(signalChan, os.Interrupt)
